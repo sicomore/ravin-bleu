@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<title>agendaversailles</title>
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
+	<meta name="robots" content="noindex, follow" />
+	<meta name="generator" content="WebAcappalla Responsive" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+	<link rel="stylesheet" href="wa_bootstrap/css/bootstrap.min.css?v=104" />
+	<link rel="stylesheet" href="wa_general.css?v=104" />
+	<link rel="stylesheet" href="wa_style_global.css?v=17" />
+	<link rel="stylesheet" href="wa_webfont_global.css?v=17" />
+	<link rel="stylesheet" href="wa_css/pages-page15_fr.css?v=438" />
+	<link rel="stylesheet" href="wa_menu/menu.css?v=104" />
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+	<link href="https://fonts.googleapis.com/css?family=Rajdhani:400,500,600,700" rel="stylesheet">
+
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" /> -->
+	<link rel="stylesheet" href="calendriers/salle/lib/css/fullcalendar.min.css" />
+	<link rel="stylesheet" href="calendriers/salle/lib/css/jquery-ui.min.css" />
+	<link rel="stylesheet" href="calendriers/salle/lib/css/jquery-ui.structure.min.css" />
+	<link rel="stylesheet" href="calendriers/salle/lib/css/jquery-ui-NM-flick.custom/jquery-ui.theme.min.css" />
+	<link rel="stylesheet" href="calendriers/salle/lib/css/calendrier.css" />
+
+
+	<style>
+	#wa-container-joql13611duosd7gu8 {background-size:cover;background-position:center top;background-image : url('wa_images/briquelogo3.jpg?v=1dk0qc9');}
+	#wa-container-wrapper-joql136f1duoseqzuo {background-size:cover;background-position:center center;background-image : url('wa_images/texture beton_(1).jpg?v=1do87l7');}
+	#wa-container-wrapper-joql136i1duoseiqdc {background-size:cover;background-position:left top;background-image : url('wa_images/texture beton_(1).jpg?v=1do87l7');}
+	#wa-container-wrapper-joql136k1duosenugw {background-size:cover;background-position:left top;background-image : url('wa_images/texture beton_(1).jpg?v=1do87l7');}
+	#wa-container-wrapper-joql136p1duosdiark {background-size:cover;background-position:left top;background-image : url('wa_images/texture beton.jpg?v=1dva9a4');}
+	div#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: white no-repeat center center; }
+
+	#footer_container {
+		background: #000000;
+		border: 0px solid #000000;
+		bottom: 0px;
+		height: 45px;
+		left: -0px;
+		position: fixed;
+		width: 100%;
+		z-index: 999;
+	}
+
+	#footer {
+		line-height: 15px;
+		margin: 6;
+		width: 100%;
+		color: #fff;
+		text-align: center;
+		text-indent: auto;
+		word-spacing: 3px;
+		font-family: exo, sans-serif;
+		font-size: 10px;
+	}
+
+	</style>
+
+
+	<link rel="shortcut icon" type="image/png" href="wa_images/logobonhommegris_3.png" />
+
+</head>
+
+<body>
+	<div class="modal fade" id="calendrier-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="title"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="description"></p>
+					<p>Horaires : <span id="debut"></span> - <span id="fin"></span></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="calendrier-tooltip" data-toggle="tooltip">
+		<h4 id="title"></h4>
+		<p id="description"></p>
+		<p>Horaires : <span id="debut"></span> - <span id="fin"></span></p>
+		<p>Cliquer pour plus d'infos</p>
+	</div>
+
+
+	<!-- <div id="preloader"></div> -->
+	<a id="wa-anchor-top"></a>
+	<!-- <div id="wa-container-wrapper-joql13611duosd7gu8"> -->
+	<div id="wa-container-joql13611duosd7gu8" class="container-fluid  ">
+		<div id="wa-row-jk94escu1dr302yxtc" class="row row-align  ">
+			<div class="wa-subpage-wrapper  col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+				<div id="wa-compsubpage-jk94escu1dr31147m8">
+					<div id="wa-row-joqywmh01duoujnaeo" class="row row-align  ">
+						<div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 wa-valign-middle ">
+							<div id="wa-compmenu-joqywmh01duoujjifk" class="wa-compmenu wa-menu-init">
+
+								<nav class="navbar navbar-default wa-always-on-top wa-aot-fluid wa-menu-centered" style="margin:0px;">
+									<div class="container-fluid">
+										<!-- Brand and toggle get grouped for better mobile display -->
+										<div class="navbar-header">
+											<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#wa-collapse-wa-compmenu-joqywmh01duoujjifk" aria-expanded="false">
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+											</button>
+											<a href="versailles.html#wa-anchor-top" class="navbar-brand scrollTo">
+												<span>ACCUEIL</span>
+											</a>
+										</div>
+										<div class="collapse navbar-collapse" id="wa-collapse-wa-compmenu-joqywmh01duoujjifk">
+											<ul class="nav navbar-nav">
+												<li><a href="versailles.html#wa-anchor-jjcizx3q1dusl5aark" class="scrollTo">LE PROJET</a></li>
+												<li><a href="versailles.html#wa-anchor-jk0dv8k81ds7ndwh6o" class="scrollTo">PROGRAMME RÉGULIER</a></li>
+												<li><a href="#wa-anchor-top" class="scrollTo">ATELIERS &#38; ÉVÉNEMENTS</a></li>
+												<li><a href="intervenants.html">LES INTERVENANTS</a></li>
+												<li><a href="mailto:versaille@ravinbleu.org">CONTACT &#38; PRIVATISATION</a></li>
+											</ul>
+										</div><!-- /.navbar-collapse -->
+									</div><!-- /.container-fluid -->
+								</nav>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- </div> -->
+
+
+	<div class="container">
+		<div id="calendrier"></div>
+	</div>
+
+
+	<!-- <div id="calendrier-integration">
+	<iframe src="calendriers/salle/calendrier-notext.php" width="100%" style="height:1500px; padding:0;border:none;"></iframe>
+</div> -->
+
+<!-- <div id="wa-container-wrapper-joql136q1duoscszr4"> -->
+<div id="wa-container-joql136q1duoscszr4" class="container  ">
+	<div id="wa-row-jk0z6rfo1dv16bdpuo" class="row row-align  ">
+		<div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+			<div id="wa-comphtml-jk0z6rfo1dv16bbv34">
+
+				<!-- Texte du pied de page fixe : debut -->
+				<div id="footer_container">
+					<div id="footer">
+						<br>
+						&copy; LE RAVIN BLEU. ASSOCIATION D'INITIATIVES. <a style="color: #fff;" <br>
+							<a style="color: #fff;" href="http://www.ravinbleu.org">WWW.RAVINBLEU.ORG
+							</a></span>
+						</div>
+					</div>
+					<!-- Texte du pied de page fixe : fin -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- </div> -->
+
+	<a id="wa-anchor-bottom"></a>
+
+	<script>
+	var WaComponentContext = {};
+	var WaPageContext = {};
+	var WaContext = {};
+	WaContext.app_version="1.4.51"
+	WaContext.app_revision="b72b601f7"
+	WaContext.preview=false
+	WaPageContext.lang="fr"
+	WaPageContext.lang_filename="fr"
+</script>
+<!-- <link rel="stylesheet" href="wa_bootstrap/css/bootstrap.min.css?v=104" />
+<link rel="stylesheet" href="wa_general.css?v=104" />
+<link rel="stylesheet" href="wa_style_global.css?v=17" />
+<link rel="stylesheet" href="wa_webfont_global.css?v=17" />
+<link rel="stylesheet" href="wa_css/pages-page15_fr.css?v=438" />
+<link rel="stylesheet" href="wa_menu/menu.css?v=104" /> -->
+<!-- <script>
+document.getElementById("preloader").style.display = 'none';
+</script> -->
+
+<!-- <script src="wa_bootstrap/js/jquery.min.js?v=104&"></script> -->
+<script src="calendriers/salle/lib/js/jquery.min.js"></script>
+<script>
+var wa$ = jQuery.noConflict();
+var $ = jQuery.noConflict();
+</script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- <script src="wa_bootstrap/js/bootstrap.min.js?v=104&"></script> -->
+<script src="wa_js/wa_bootstrap_util.js?v=104&"></script>
+<script src="wa_js/waVariables_fr.js?v=30&"></script>
+<script src="wa_menu/wa_menu.js?v=104&"></script>
+<script src="wa_menu/wa_search.js?v=104&"></script>
+<script src="wa_js/validator.min.js?v=104&"></script>
+<script src="wa_js/wa_common.js?v=104&"></script>
+<script src="wa_js/parallax.js?v=104&"></script>
+
+<script src="calendriers/salle/lib/js/jquery-ui.min.js"></script>
+<script src="calendriers/salle/lib/js/moment.min.js"></script>
+<script src="calendriers/salle/lib/js/fullcalendar.min.js"></script>
+<script src="calendriers/salle/lib/js/gcal.js"></script>
+<script src="calendriers/salle/lib/js/locale-all.js"></script>
+<script src="calendriers/salle/lib/js/calendrier.js"></script>
+
+</body>
+
+</html>
