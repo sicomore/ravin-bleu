@@ -24,11 +24,11 @@ $(document).ready(function() {
 		googleCalendarApiKey: $apiKey,
 		eventSources: [{ // Grande Grange
 			googleCalendarId: 'ravinbleu.info_fruk3rqs9vvka0hsdu3c5891m8@group.calendar.google.com',
-			color: '#C20000',
+			color: $('#legende.container #ggr').css('background-color'),
 			textColor: '#ffffff'
 		}, { // Petite Grange
 			googleCalendarId: 'ravinbleu.info_utmbglk8ndrq8unvq0bugl7rb8@group.calendar.google.com',
-			color: '#FFBF00',
+			color: $('#legende.container #pgr').css('background-color'),
 			textColor: '#ffffff'
 			// }, {
 			// url: 'load.php'
@@ -82,10 +82,8 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: function(e) {
 					if (e.transparency == 'transparent') {
-						element[0].style.backgroundColor = '#7FDD4C';
+						element[0].style.backgroundColor = $('#legende.container #gl').css('background-color');
 						element[0].style.border = 'none';
-						// element.css('opacity', 0.8);
-						// $('#calendrier-modal .modal-footer a').addClass("disabled");
 					};
 				}
 			});

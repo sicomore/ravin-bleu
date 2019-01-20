@@ -3,19 +3,11 @@ html {
   padding: 0;
 }
 
-body {
+body * {
   /* font-family: 'Poiret One', cursive; */
   font-family: 'Rajdhani', sans-serif;
 }
 
-.container {
-  height: auto;
-}
-
-#calendrier {
-  margin-top: 5vh;
-  height: auto;
-}
 
 #calendrier-tooltip {
   display: none;
@@ -63,6 +55,39 @@ body {
 
 #calendrier-modal .modal-footer p {
   margin: 0;
+}
+
+.container.calendrier{
+  height: auto;
+}
+
+#calendrier {
+  margin-top: 5vh;
+  height: auto;
+}
+
+#legende.container {
+  margin-top: 20px;
+}
+
+#legende.container * {
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+#legende.container .btn {
+  padding: 3px 10px !important;
+  color: #FFFFFF;
+}
+
+#legende.container #pgr {
+  background-color: #FFBF00;
+}
+#legende.container #ggr {
+  background-color: #C20000;
+}
+#legende.container #gl {
+  background-color: #7FDD4C;
 }
 
 @media screen and (width < 576px) {

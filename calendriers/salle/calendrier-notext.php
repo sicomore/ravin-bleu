@@ -51,7 +51,7 @@
 		<p>Cliquer pour plus d'infos</p>
 	</div>
 
-	<div class="container">
+	<div class="container calendrier">
 		<div id="calendrier"></div>
 	</div>
 

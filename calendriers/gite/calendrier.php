@@ -54,8 +54,19 @@
 		<p id="clic"></p>
 	</div>
 
-	<div class="container">
+	<div class="container calendrier">
 		<div id="calendrier"></div>
+	</div>
+
+	<div id="legende" class="container">
+		<div class="row">
+			<div class="col">
+				Légende :
+				<button id="gl" class="btn">Grange libre</button>
+				<button id="pgr" class="btn">Petite grange réservée</button>
+				<button id="ggr" class="btn">Grande grange réservée</button>
+			</div>
+		</div>
 	</div>
 
 	<script src="../lib/js/jquery.min.js"></script>
