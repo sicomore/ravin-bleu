@@ -167,7 +167,7 @@ $(document).ready(function() {
 					} else {
 						if (e.location) {
 							var lien = e.location;
-							lien = lien.replace(/^http[s]?:\/\//g, "")
+							lien = lien.replace(/^http[s]?:\/\//g, "");
 							bouton.removeClass("disabled");
 							bouton.removeClass("btn-default");
 							bouton.addClass("btn-primary");
