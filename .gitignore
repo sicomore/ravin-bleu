@@ -1,10 +1,10 @@
 .DS_Store
 /*/.DS_Store
 /autotests
-/calendriers/id-api-gg.php
-/calendriers/include
+/calendriers/private
 /calendriers/salle-copie
 /calendriers/bdd
+/calendriers/*/autres
 /caltest
 /dossier
 /eshop
