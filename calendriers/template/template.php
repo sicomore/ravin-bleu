@@ -1,5 +1,3 @@
-<?php //index.php ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,8 +16,8 @@
 	<link rel="stylesheet" href="../lib/css/fullcalendar.min.css" />
 	<link rel="stylesheet" href="../lib/css/jquery-ui.min.css" />
 	<link rel="stylesheet" href="../lib/css/jquery-ui.structure.min.css" />
-	<link rel="stylesheet" href="./css/jquery-ui-ravin.custom/jquery-ui.theme.min.css" />
-	<link rel="stylesheet" href="./css/calendrier.css" />
+	<link rel="stylesheet" href="../lib/css/jquery-ui-ravin.custom/jquery-ui.theme.min.css" />
+	<link rel="stylesheet" href="../lib/css/calendrier.css" />
 
 </head>
 
@@ -28,32 +26,25 @@
 		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="title"></h5>
+					<h5 class="modal-title"></h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<p id="description"></p>
-					<p>Horaires : <span id="debut"></span> - <span id="fin"></span></p>
+					<p class="horaires">Horaires : <span id="debut"></span> - <span id="fin"></span></p>
 				</div>
 				<div class="modal-footer">
+					<a href="#" class="btn" target="_blank"></a>
+					<p id="date"></p>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="calendrier-tooltip" data-toggle="tooltip">
-		<h4 id="title"></h4>
-		<p id="description"></p>
-		<p>Horaires : <span id="debut"></span> - <span id="fin"></span></p>
-		<p>Cliquer pour plus d'infos</p>
-	</div>
-
-	<div class="container calendrier">
-		<div id="calendrier"></div>
-	</div>
+	<?= $vue; ?>
 
 	<script src="../lib/js/jquery.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -63,6 +54,6 @@
 	<script src="../lib/js/gcal.js"></script>
 	<script src="../lib/js/locale-all.js"></script>
 	<script src="../private/api-key.js"></script>
-	<script src="./lib/js/calendrier-notext.js"></script>
+	<script src="./js/calendrier.js"></script>
 </body>
 </html>

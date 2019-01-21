@@ -12,8 +12,8 @@ $(document).ready(function() {
 		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
 		locale: 'fr',
 		height: 'parent',
-		contentHeight: window.innerWidth < 600 ? 'auto' : 'auto',
-		// contentHeight: 'auto',
+		// contentHeight: window.innerWidth < 600 ? 'auto' : 'auto',
+		contentHeight: 'auto',
 		themeSystem: 'jquery-ui',
 		themeButtonIcons:{
 			prev: 'ui-icon-arrowthick-1-w',
@@ -55,7 +55,7 @@ $(document).ready(function() {
 		},
 		columnHeaderFormat: 'ddd DD/MM',
 		timeFormat: 'H:mm',
-		eventColor: 'rgb(0, 199, 212)', // Couleur de fond par défaut //////
+		eventColor: '#00c7d4', // Couleur de fond par défaut //////
 		eventTextColor: '#FFFFFF', // Couleur de texte par défaut //////
 		eventOrder: 'event.source.uid',
 		editable: false,
@@ -74,6 +74,7 @@ $(document).ready(function() {
 
 		eventRender: function (event, element) {
 			element.css('font-weight', 500);
+
 			// $('#calendrier-modal .modal-footer a').removeClass("disabled");
 			// var eventComplet = fullEvent(event.source.googleCalendarId, event.id);
 			$.ajax({
@@ -82,17 +83,27 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: function(e) {
 					if (e.transparency == 'transparent') {
-						element[0].style.backgroundColor = $('#legende.container #gl').css('background-color');
-						element[0].style.border = 'none';
+						var libreCouleur = $('#legende.container #gl').css('background-color');
+						switch (event.source.calendar.view.name) {
+							case 'month': element[0].style.backgroundColor = libreCouleur; element[0].style.border = 'none';
+							break;
+							case 'listMonth': element[0].childNodes[1].children[0].style.backgroundColor = libreCouleur;
+							break;
+						}
+
 					};
 				}
 			});
+
+			if (event.end.isBefore(moment())) {
+				element.css('opacity', 0.4);
+			};
 		},
 
 		// select: function(start, end, allDay) {
-		// 	// var title = prompt("Entrer un titre :");
-		// 	// var desc = prompt("Entrer une description :");
-		// 	// var categorie = prompt('Catégorie : ');
+		// var title = prompt("Entrer un titre :");
+		// var desc = prompt("Entrer une description :");
+		// var categorie = prompt('Catégorie : ');
 		//
 		// 	if (title)
 		// 	{
@@ -159,22 +170,14 @@ $(document).ready(function() {
 				type: 'GET',
 				dataType: 'json',
 				success: function(e) {
-					if (e.transparency == 'transparent') {
+					if (e.location) {
+						var lien = e.location;
 						bouton.removeClass("disabled");
 						bouton.removeClass("btn-default");
 						bouton.addClass("btn-primary");
-						bouton.html("Réserver");
-					} else {
-						if (e.location) {
-							var lien = e.location;
-							lien = lien.replace(/^http[s]?:\/\//g, "");
-							bouton.removeClass("disabled");
-							bouton.removeClass("btn-default");
-							bouton.addClass("btn-primary");
-							bouton.html("Inscription");
-							bouton.attr('href', 'http://' + lien);
-							bouton.attr('target', '_blank');
-						}
+						bouton.html("INFOS / RÉSERVATIONS");
+						bouton.attr('href', 'http://' + lien);
+						bouton.attr('target', '_blank');
 					};
 				}
 			});
@@ -197,10 +200,10 @@ $(document).ready(function() {
 
 			// Filtrage des événements provenant du Google Agenda //////////
 			// if (id.length > 20) {
-			titreModal.html(event.title);
-			descriptionModal.html(event.description);
-			debutModal.append(moment(event.start).format('LT'));
-			finModal.append(moment(event.end).format('LT'));
+				titreModal.html(event.title);
+				descriptionModal.html(event.description);
+				debutModal.append(moment(event.start).format('LT'));
+				finModal.append(moment(event.end).format('LT'));
 
 
 			// Filtrage des événements provenant de la BDD //////////
@@ -241,7 +244,7 @@ $(document).ready(function() {
 			// }
 		},
 
-		eventMouseover:function (event) {
+		eventMouseover:function (event, element) {
 			$('.horaires').show();
 			$('.fc-event-container').css('cursor', 'pointer');
 			$('.fc-list-item').css('cursor', 'pointer');
@@ -249,7 +252,7 @@ $(document).ready(function() {
 			$('#calendrier-tooltip').css('flex-flow', 'column nowrap');
 			$('#calendrier-tooltip').css('justify-content', 'space-between');
 			$('#calendrier-tooltip p:last-of-type').css('align-self', 'center');
-			$('#clic').html('Cliquer pour plus d\'infos');
+			// $('#clic').html('Cliquer pour plus d\'infos');
 			var hauteur = (event.description) ? 300 : 150 ;
 			$('#calendrier-tooltip').css('height', hauteur)
 			if (idEvent !== event.id) {
@@ -266,60 +269,62 @@ $(document).ready(function() {
 
 				// Filtrage des événements provenant du Google Agenda ////////
 				// if (idEvent.length > 20) {
-				titreCours.html(event.title);
-				desc = event.description;
+					titreCours.html(event.title);
+					desc = event.description;
 
-				if (desc) {
-					var regexDebut = new RegExp('^(\n|\r|<br>)');
+					if (desc) {
+						var regexDebut = new RegExp('^(\n|\r|<br>)');
 
-					if (regexDebut.test(desc)) {
-						desc = event.description.replace(/^(\n|\r|<br>)/, '');
-					}
-
-					var regexCesure = new RegExp('(\n|\r|<br>)');
-					if (regexCesure.test(desc)) {
-						var cesures = [];
-						cesures.push(desc.indexOf('\n'));
-						cesures.push(desc.indexOf('\r'));
-						cesures.push(desc.indexOf('<br>'));
-						cesures.forEach(function (cesure) {
-							if (cesure > 1) {
-								desc = desc.substring(0, cesure);
-							}
-						});
-					}
-
-					var regexLien = new RegExp('<a href');
-					if (regexLien.test(desc)) {
-						var aDebut1 = desc.indexOf("<a href");
-						var aDebut2 = desc.indexOf(">")+1;
-						var aFin = desc.indexOf("</a>");
-						var descRawDebut = desc.substring(0, aDebut1);
-						var descRawlien = desc.substring(aDebut2, aFin);
-						var descRawFin = desc.substring(aFin+4);
-						desc = descRawDebut + descRawlien + descRawFin;
-					}
-					var descCourte = (desc.length > 250) ? desc.substring(0, 250) + ' ...' : desc;
-					description.html(descCourte);
-				}
-
-				$.ajax({
-					url: 'https://www.googleapis.com/calendar/v3/calendars/'+event.source.googleCalendarId+'/events/'+event.id+'?key=' + $apiKey,
-					type: 'GET',
-					dataType: 'json',
-					success: function(e) {
-						if (e.transparency == 'transparent') {
-							$('#clic').html('Cliquer pour réserver')
+						if (regexDebut.test(desc)) {
+							desc = event.description.replace(/^(\n|\r|<br>)/, '');
 						}
-					}
-				});
 
-				if (event.allDay === false) {
-					debut.html(moment(event.start).format('LT'));
-					fin.html(moment(event.end).format('LT'));
-				} else {
-					$('.horaires').hide();
-				}
+						var regexCesure = new RegExp('(\n|\r|<br>)');
+						if (regexCesure.test(desc)) {
+							var cesures = [];
+							cesures.push(desc.indexOf('\n'));
+							cesures.push(desc.indexOf('\r'));
+							cesures.push(desc.indexOf('<br>'));
+							cesures.forEach(function (cesure) {
+								if (cesure > 1) {
+									desc = desc.substring(0, cesure);
+								}
+							});
+						}
+
+						var regexLien = new RegExp('<a href');
+						if (regexLien.test(desc)) {
+							var aDebut1 = desc.indexOf("<a href");
+							var aDebut2 = desc.indexOf(">")+1;
+							var aFin = desc.indexOf("</a>");
+							var descRawDebut = desc.substring(0, aDebut1);
+							var descRawlien = desc.substring(aDebut2, aFin);
+							var descRawFin = desc.substring(aFin+4);
+							desc = descRawDebut + descRawlien + descRawFin;
+						}
+						var descCourte = (desc.length > 250) ? desc.substring(0, 250) + ' ...' : desc;
+						description.html(descCourte);
+					}
+
+					$.ajax({
+						url: 'https://www.googleapis.com/calendar/v3/calendars/'+event.source.googleCalendarId+'/events/'+event.id+'?key=' + $apiKey,
+						type: 'GET',
+						dataType: 'json',
+						success: function(e) {
+							if (e.transparency == 'transparent') {
+								$('#clic').html('Cliquer pour plus d\'infos');
+								// si views = month
+								// element[0].style.backgroundColor = $('#legende.container #gl').css('background-color');
+							}
+						}
+					});
+
+					if (event.allDay === false) {
+						debut.html(moment(event.start).format('LT'));
+						fin.html(moment(event.end).format('LT'));
+					} else {
+						$('.horaires').hide();
+					}
 
 				// Filtrage des événements provenant de la BDD ////////
 				// } else {

@@ -4,7 +4,6 @@ html {
 }
 
 body * {
-  /* font-family: 'Poiret One', cursive; */
   font-family: 'Rajdhani', sans-serif;
 }
 
@@ -57,7 +56,7 @@ body * {
   margin: 0;
 }
 
-.container.calendrier{
+.container.calendrier {
   height: auto;
 }
 
@@ -71,15 +70,24 @@ body * {
 }
 
 #legende.container * {
-  font-size: 0.95em;
+  font-size: 0.9em;
   font-weight: 500;
 }
 
+#legende.container .col {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: flex-end;
+}
+
 #legende.container .btn {
-  padding: 3px 10px !important;
+  padding: 0 10px !important;
+  margin-left: 5px;
   color: #FFFFFF;
 }
 
+/* Calendrier granges */
 #legende.container #pgr {
   background-color: #FFBF00;
 }
@@ -89,6 +97,50 @@ body * {
 #legende.container #gl {
   background-color: #7FDD4C;
 }
+/* Calendrier granges */
+
+/* Calendrier versailles */
+#legende.container.versailles {
+  display: none;
+}
+
+#legende.container #atels {
+  background-color: #0045C6;
+}
+#legende.container #atel2 {
+  background-color: #6201A1;
+}
+#legende.container #atel3 {
+  background-color: #873600;
+}
+#legende.container #chant {
+  background-color: #EAA017;
+}
+#legende.container #events {
+  background-color: #E74C3C;
+}
+#legende.container #gym {
+  background-color: #9C3AF8;
+}
+#legende.container #medit {
+  background-color: #3B8500;
+}
+#legende.container #gong {
+  background-color: #3AD0F8;
+}
+#legende.container #tango {
+  background-color: #922B21;
+}
+#legende.container #indiv {
+  background-color: #9E9E98;
+}
+#legende.container #groupe {
+  background-color: #6D6A50;
+}
+#legende.container #yoga {
+  background-color: #82E73C;
+}
+/* Calendrier versailles */
 
 @media screen and (width < 576px) {
   .container {
